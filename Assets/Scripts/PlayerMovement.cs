@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DragMovementFree : MonoBehaviour
 {
-    public float dragSpeed = 2f;  // slow movement
+    public float dragSpeed = 1f;  // slow movement
     public float groundY = 1f;       // character height
 
     private Vector2 lastTouchPosition;
@@ -62,16 +62,20 @@ public class DragMovementFree : MonoBehaviour
 
     void MoveCharacter(Vector2 delta)
     {
-        // Convert screen drag to world movement
-        Vector3 move = mainCam.transform.right * delta.x + mainCam.transform.forward * delta.y;
+        // Scale down the raw delta to a reasonable movement factor
+        Vector2 scaledDelta = delta * 0.5f;  // tweak 0.01f → 0.02f or 0.005f for faster/slower
+
+        // Convert drag to world movement
+        Vector3 move = mainCam.transform.right * scaledDelta.x + mainCam.transform.forward * scaledDelta.y;
         move.y = 0;
 
         // Apply movement
-        Vector3 newPos = transform.position + move * dragSpeed;
+        Vector3 newPos = transform.position + move * dragSpeed * Time.deltaTime;
 
         // Keep on ground
         newPos.y = groundY;
 
         transform.position = newPos;
+
     }
 }
