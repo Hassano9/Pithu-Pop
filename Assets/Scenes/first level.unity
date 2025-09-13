@@ -4152,7 +4152,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 92cbe2dc7b6af2342a55106f2369ce57, type: 3}
   m_PrefabInstance: {fileID: 2050093788}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &424429198
+--- !u!114 &424429200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4164,11 +4164,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff863197765e0e44be670ab313bd1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
-  runSpeed: 6
-  rotationSpeed: 10
+  walkSpeed: 1
+  runSpeed: 3
+  rotationSpeed: 6
   joystick: {fileID: 333254269}
   anim: {fileID: 424429196}
+--- !u!65 &424429201
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424429195}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.3007314, z: 1}
+  m_Center: {x: 0, y: 1.0845089, z: 0}
 --- !u!1001 &426122504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22239,6 +22260,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92cbe2dc7b6af2342a55106f2369ce57, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 92cbe2dc7b6af2342a55106f2369ce57, type: 3}
       propertyPath: m_Controller
       value: 
@@ -22253,7 +22278,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 92cbe2dc7b6af2342a55106f2369ce57, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 424429198}
+      addedObject: {fileID: 424429200}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 92cbe2dc7b6af2342a55106f2369ce57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 424429201}
   m_SourcePrefab: {fileID: 100100000, guid: 92cbe2dc7b6af2342a55106f2369ce57, type: 3}
 --- !u!1001 &2053090965
 PrefabInstance:

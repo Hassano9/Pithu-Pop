@@ -5,7 +5,7 @@ public class MobilePlayerController : MonoBehaviour
     [Header("Movement")]
     public float walkSpeed = 1f;
     public float runSpeed = 3f;
-    public float rotationSpeed = 7f;
+    public float rotationSpeed = 6f;
 
     [Header("References")]
     public Joystick joystick;   // Drag JoystickBG here
