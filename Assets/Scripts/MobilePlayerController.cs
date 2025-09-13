@@ -3,9 +3,11 @@ using UnityEngine;
 public class MobilePlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    public float walkSpeed = 3f;
-    public float runSpeed = 6f;
-    public float rotationSpeed = 10f;
+
+    public float walkSpeed = 1f;
+    public float runSpeed = 3f;
+    public float rotationSpeed = 6f;
+
 
     [Header("References")]
     public Joystick joystick;   // Drag JoystickBG here
