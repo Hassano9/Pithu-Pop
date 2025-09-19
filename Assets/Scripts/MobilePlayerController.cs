@@ -3,15 +3,13 @@ using UnityEngine;
 public class MobilePlayerController : MonoBehaviour
 {
     [Header("Movement")]
-
     public float walkSpeed = 1f;
     public float runSpeed = 3f;
     public float rotationSpeed = 6f;
 
-
     [Header("References")]
-    public Joystick joystick;   // Drag JoystickBG here
-    public Animator anim;       // Drag your Animator here (the one with Idle/Walk/Run)
+    public Joystick joystick;  // Works for FloatingJoystick too
+    public Animator anim;               // Drag your Animator here (Idle/Walk/Run)
 
     void Update()
     {
@@ -28,11 +26,10 @@ public class MobilePlayerController : MonoBehaviour
         }
 
         // Get joystick input
-        Vector3 input = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        float horizontal = joystick.Horizontal;
+        float vertical = joystick.Vertical;
+        Vector3 input = new Vector3(horizontal, 0, vertical);
         float mag = input.magnitude;
-
-        // Debug joystick magnitude
-        Debug.Log("🎮 Joystick magnitude = " + mag);
 
         // Move if input is detected
         if (mag > 0.1f)
@@ -48,8 +45,7 @@ public class MobilePlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
 
-        // Update Animator parameter
+        // Update Animator parameter (0 = Idle, 0.1–0.6 = Walk, >0.6 = Run)
         anim.SetFloat("Speed", mag);
-        Debug.Log("🎬 Animator Speed set to: " + mag);
     }
 }
