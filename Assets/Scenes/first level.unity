@@ -15672,6 +15672,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2652829098444880043, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      propertyPath: m_Size.x
+      value: 30.931599
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652829098444880043, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      propertyPath: m_Size.y
+      value: 4.7923822
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652829098444880043, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      propertyPath: m_Center.x
+      value: -2.0003948
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652829098444880043, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      propertyPath: m_Center.y
+      value: 2.3265905
+      objectReference: {fileID: 0}
     - target: {fileID: 3152954606340538895, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
       propertyPath: m_Name
       value: SM_Archway_01
@@ -15683,7 +15699,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3152954606340538895, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728447587}
+    - targetCorrespondingSourceObject: {fileID: 3152954606340538895, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728447586}
+    - targetCorrespondingSourceObject: {fileID: 3152954606340538895, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728447585}
   m_SourcePrefab: {fileID: 100100000, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
 --- !u!1001 &1276515279
 PrefabInstance:
@@ -25347,6 +25372,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8074043743723553847, guid: 2d75f008eccc7ba40b8c5236e0b10311, type: 3}
   m_PrefabInstance: {fileID: 1852914353}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1728447578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3152954606340538895, guid: 92b9500dcd2ea724780127ee172ee9a7, type: 3}
+  m_PrefabInstance: {fileID: 1276441584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1728447585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728447578}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30.931599, y: 4.7923822, z: 0.6674975}
+  m_Center: {x: -2.0003948, y: 2.3265905, z: -26.2}
+--- !u!65 &1728447586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728447578}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.86088943, y: 4.7923822, z: 26.617102}
+  m_Center: {x: 13.36, y: 2.3265905, z: -12.979133}
+--- !u!65 &1728447587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728447578}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31689453, y: 4.7478113, z: 26.612848}
+  m_Center: {x: -17.330444, y: 2.373908, z: -12.977006}
 --- !u!4 &1728448152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3997886322029931475, guid: ad08133495a7adb49b6ccc63132fd923, type: 3}
