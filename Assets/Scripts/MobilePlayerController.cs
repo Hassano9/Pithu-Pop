@@ -9,7 +9,10 @@ public class MobilePlayerController : MonoBehaviour
 
     [Header("References")]
     public Joystick joystick;  // Works for FloatingJoystick too
-    public Animator anim;               // Drag your Animator here (Idle/Walk/Run)
+    public Animator anim;      // Drag your Animator here (Idle/Walk/Run)
+
+    [Header("Control")]
+    public bool canMove = true;  // ✅ New toggle to block movement
 
     void Update()
     {
@@ -22,6 +25,13 @@ public class MobilePlayerController : MonoBehaviour
         if (anim == null)
         {
             Debug.LogWarning("⚠️ Animator is not assigned in the Inspector!");
+            return;
+        }
+
+        // ✅ Block movement when disabled
+        if (!canMove)
+        {
+            anim.SetFloat("Speed", 0); // force Idle
             return;
         }
 
