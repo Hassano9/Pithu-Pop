@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class MobilePlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -8,54 +9,73 @@ public class MobilePlayerController : MonoBehaviour
     public float rotationSpeed = 6f;
 
     [Header("References")]
-    public Joystick joystick;  // Works for FloatingJoystick too
-    public Animator anim;      // Drag your Animator here (Idle/Walk/Run)
+    public Joystick joystick;  
+    public Animator anim;      
 
     [Header("Control")]
-    public bool canMove = true;  // ✅ New toggle to block movement
+    public bool canMove = true;  
+
+    private CharacterController controller;
+    private float gravity = -9.81f;
+    private float verticalVelocity = 0f; // Y movement storage
+
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
+
+        // Make sure controller won't climb things
+        controller.stepOffset = 0f;
+        controller.slopeLimit = 0f;
+    }
 
     void Update()
     {
-        if (joystick == null)
-        {
-            Debug.LogWarning("⚠️ Joystick is not assigned in the Inspector!");
-            return;
-        }
+        if (joystick == null || anim == null) return;
 
-        if (anim == null)
-        {
-            Debug.LogWarning("⚠️ Animator is not assigned in the Inspector!");
-            return;
-        }
-
-        // ✅ Block movement when disabled
         if (!canMove)
         {
-            anim.SetFloat("Speed", 0); // force Idle
+            anim.SetFloat("Speed", 0);
             return;
         }
 
-        // Get joystick input
+        // Joystick input
         float horizontal = joystick.Horizontal;
         float vertical = joystick.Vertical;
         Vector3 input = new Vector3(horizontal, 0, vertical);
         float mag = input.magnitude;
 
-        // Move if input is detected
+        // Movement vector (horizontal only)
+        Vector3 move = Vector3.zero;
+
         if (mag > 0.1f)
         {
             bool running = mag > 0.6f;
             float speed = running ? runSpeed : walkSpeed;
 
-            // Move character using transform
-            transform.Translate(input.normalized * speed * Time.deltaTime, Space.World);
+            move = input.normalized * speed;
 
-            // Rotate smoothly towards movement direction
+            // Smooth rotation
             Quaternion targetRot = Quaternion.LookRotation(input.normalized);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
 
-        // Update Animator parameter (0 = Idle, 0.1–0.6 = Walk, >0.6 = Run)
+        // ✅ Gravity handling
+        if (controller.isGrounded)
+        {
+            verticalVelocity = -0.1f; // keep player "stuck" to ground
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+
+        // Apply gravity
+        move.y = verticalVelocity;
+
+        // ✅ Final move
+        controller.Move(move * Time.deltaTime);
+
+        // Animator update
         anim.SetFloat("Speed", mag);
     }
 }

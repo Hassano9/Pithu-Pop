@@ -69,43 +69,48 @@ public class StackCollector : MonoBehaviour
     }
 
     IEnumerator DropItems()
+{
+    Debug.Log("📦 Dropping items...");
+
+    for (int i = stack.Count - 1; i >= 0; i--)
     {
-        Debug.Log("📦 Dropping items...");
+        Transform item = stack[i];
+        stack.RemoveAt(i);
 
-        for (int i = stack.Count - 1; i >= 0; i--)
+        // Get how many items are already inside the dropZone
+        int alreadyDropped = dropZone.childCount;
+
+        // Re-parent to dropZone
+        item.SetParent(dropZone);
+
+        // Position new item on top of existing ones
+        Vector3 targetPos = dropZone.position + Vector3.up * alreadyDropped * stackHeight;
+        Quaternion targetRot = Quaternion.identity;
+
+        Vector3 startPos = item.position;
+        Quaternion startRot = item.rotation;
+
+        float t = 0;
+        while (t < 1f)
         {
-            Transform item = stack[i];
-            stack.RemoveAt(i);
-
-            // Re-parent to dropZone
-            item.SetParent(dropZone);
-
-            Vector3 targetPos = dropZone.position + Vector3.up * i * stackHeight;
-            Quaternion targetRot = Quaternion.identity;
-
-            Vector3 startPos = item.position;
-            Quaternion startRot = item.rotation;
-
-            float t = 0;
-            while (t < 1f)
-            {
-                t += Time.deltaTime * (moveSpeed * 0.5f);
-                item.position = Vector3.Lerp(startPos, targetPos, t);
-                item.rotation = Quaternion.Slerp(startRot, targetRot, t);
-                yield return null;
-            }
-
-            item.position = targetPos;
-            item.rotation = targetRot;
-
-            yield return new WaitForSeconds(0.1f); // delay for staggered effect
+            t += Time.deltaTime * (moveSpeed * 0.5f);
+            item.position = Vector3.Lerp(startPos, targetPos, t);
+            item.rotation = Quaternion.Slerp(startRot, targetRot, t);
+            yield return null;
         }
 
-        // ✅ Check Win
-        if (dropZone.childCount >= winItemCount)
-        {
-            Debug.Log("🎉 YOU WIN!");
-            // Call your win UI / scene transition here
-        }
+        item.position = targetPos;
+        item.rotation = targetRot;
+
+        yield return new WaitForSeconds(0.1f); // staggered animation
     }
+
+    // ✅ Check Win Condition
+    if (dropZone.childCount >= winItemCount)
+    {
+        Debug.Log("🎉 YOU WIN!");
+        // Add your win logic here (UI / scene load / etc.)
+    }
+}
+
 }
